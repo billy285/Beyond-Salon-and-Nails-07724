@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beyond Salon and Nails</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .logo span {
+            color: #E6B7A5;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: #E6B7A5;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background-color: #E6B7A5;
+            color: white;
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: #333;
+            border: 1px solid #333;
+        }
+        
+        /* Hero Section */
+        .hero {
+            margin-top: 80px;
+            padding: 80px 0;
+            background-color: #F9F3F0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-text {
+            flex: 1;
+            padding-right: 40px;
+        }
+        
+        .hero-text h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .hero-text h1 span {
+            color: #E6B7A5;
+        }
+        
+        .hero-text p {
+            font-size: 18px;
+            margin-bottom: 30px;
+            color: #666;
+        }
+        
+        .hero-image {
+            flex: 1;
+        }
+        
+        .hero-image img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Services Section */
+        .services {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+        
+        .section-title h2 span {
+            color: #E6B7A5;
+        }
+        
+        .section-title p {
+            color: #666;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        
+        .service-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .service-card-content {
+            padding: 20px;
+        }
+        
+        .service-card-content h3 {
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        
+        .service-card-content p {
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .service-card-content a {
+            color: #E6B7A5;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            padding: 80px 0;
+            background-color: #F9F3F0;
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: 80px 0;
+        }
+        
+        .contact-content {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            background-color: #F9F3F0;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .contact-info h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 20px;
+        }
+        
+        .contact-info-item i {
+            color: #E6B7A5;
+            margin-right: 15px;
+            font-size: 20px;
+            margin-top: 3px;
+        }
+        
+        .contact-info-item h4 {
+            margin: 0 0 5px 0;
+        }
+        
+        .contact-info-item p {
+            margin: 0;
+            color: #666;
+        }
+        
+        .contact-map {
+            flex: 1;
+            background-color: #F9F3F0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            height: 400px;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 40px 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+        }
+        
+        .footer-content h3, .footer-content h4 {
+            color: white;
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        
+        .footer-content p, .footer-content li {
+            color: #ccc;
+        }
+        
+        .footer-content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        
+        .footer-content ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-content ul li a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-content ul li a:hover {
+            color: #E6B7A5;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #555;
+            color: #ccc;
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                left: -100%;
+                width: 80%;
+                height: calc(100vh - 80px);
+                background-color: white;
+                transition: left 0.3s;
+                z-index: 999;
+                box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+                padding: 20px;
+            }
+            
+            nav.active {
+                left: 0;
+            }
+            
+            nav ul {
+                flex-direction: column;
+            }
+            
+            nav ul li {
+                margin: 15px 0;
+            }
+            
+            .cta-buttons {
+                display: none;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+            }
+            
+            .hero-text {
+                padding-right: 0;
+                margin-bottom: 30px;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+            
+            .contact-map {
+                height: 300px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Beyond <span>Salon</span></div>
+                
+                <button class="mobile-menu-btn">☰</button>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="cta-buttons">
+                    <a href="tel:(732) 389-1234" class="btn btn-primary">Call Now</a>
+                    <a href="#booking" class="btn btn-secondary">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Experience <span>Luxury</span> Nail & Beauty Services</h1>
+                    <p>Indulge in our premium spa pedicures, manicures, and beauty treatments in a relaxing, comfortable environment.</p>
+                    <div class="cta-buttons">
+                        <a href="#services" class="btn btn-primary">Our Services</a>
+                        <a href="#booking" class="btn btn-secondary">Book Now</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <img src="https://p5-flow-imagex-sign.byteimg.com/tos-cn-i-a9rns2rl98/rc/pc/super_tool/6149aa08a2c34f0a874ba4eb093a75dc~tplv-a9rns2rl98-image.image?lk3s=8e244e95&rcl=2026032318133734235EC94204F0FEDFC3&rrcfp=f06b921b&x-expires=1776852828&x-signature=oWZ7mjQX0B%2Bd23MWRX%2FTAshyZi4%3D" alt="Salon Interior">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our <span>Services</span></h2>
+                <p>Discover our comprehensive range of beauty and wellness services designed to pamper and rejuvenate you.</p>
+            </div>
+            
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://p11-doubao-search-sign.byteimg.com/labis/d85db95612087a3aa7642206c4292726~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1789812835&x-signature=V4h2gP4bHMw7JJEAmvEurpdbbMc%3D" alt="Nail Care">
+                    <div class="service-card-content">
+                        <h3>Nail Care</h3>
+                        <p>Our manicure services include shaping, cuticle care, exfoliation, massage, and polish application.</p>
+                        <a href="#booking">Learn More →</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://p3-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/1011113126454886471~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1789812835&x-signature=HebfnDuffKbi2GAO7dmlGK%2FqnJk%3D" alt="Spa Pedicure">
+                    <div class="service-card-content">
+                        <h3>Spa Pedicure</h3>
+                        <p>Indulge in our luxurious foot soak, exfoliation, massage, and nail treatment for ultimate relaxation.</p>
+                        <a href="#booking">Learn More →</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://p3-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/960469225734012932~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1789812835&x-signature=efV4XqwVlSFGAJMTyTiZnkb1TgE%3D" alt="Waxing">
+                    <div class="service-card-content">
+                        <h3>Waxing</h3>
+                        <p>Professional hair removal services for smooth, long-lasting results with minimal discomfort.</p>
+                        <a href="#booking">Learn More →</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <img src="https://p26-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/927197926458261667~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1789812835&x-signature=o8byHOedFU0kNaAINmuwesGRNbU%3D" alt="Hair Services">
+                    <div class="service-card-content">
+                        <h3>Hair Services</h3>
+                        <p>Expert haircuts, styling, coloring, and treatments to enhance your natural beauty.</p>
+                        <a href="#booking">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="gallery">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our <span>Gallery</span></h2>
+                <p>Browse our collection of work and salon environment to get a glimpse of the Beyond Salon experience.</p>
+            </div>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://p3-doubao-search-sign.byteimg.com/labis/af951d0f159d35dfca00189e5c17f36c~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1789812835&x-signature=ErPhryTUcxg7cxyKVPKZqLBG3xE%3D" alt="Nail Art">
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://p3-doubao-search-sign.byteimg.com/labis/image/98d7cc96371f0c5885c0ea99323888ab~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1789812835&x-signature=k4dugd8dtesaPOsTL0MHyPt3K8E%3D" alt="Nail Design">
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://p26-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/1023187404798033966~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1789812835&x-signature=k9gvj89DvCbzqkCapGcg4MvUbBA%3D" alt="Spa Treatment">
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://p3-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/1011113126454886471~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1789812835&x-signature=HebfnDuffKbi2GAO7dmlGK%2FqnJk%3D" alt="Pedicure">
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://p3-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/960469225734012932~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1789812835&x-signature=efV4XqwVlSFGAJMTyTiZnkb1TgE%3D" alt="Beauty Treatment">
+                </div>
+                
+                <div class="gallery-item">
+                    <img src="https://p26-doubao-search-sign.byteimg.com/tos-cn-i-be4g95zd3a/927197926458261667~tplv-be4g95zd3a-image.jpeg?lk3s=feb11e32&x-expires=1789812835&x-signature=o8byHOedFU0kNaAINmuwesGRNbU%3D" alt="Relaxation">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Contact <span>Us</span></h2>
+                <p>Visit us at our Eatontown location or contact us to schedule an appointment.</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Contact Information</h3>
+                    
+                    <div class="contact-info-item">
+                        <i>📍</i>
+                        <div>
+                            <h4>Address</h4>
+                            <p>226 NJ-35, Eatontown, NJ 07724</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <i>📞</i>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>(732) 389-1234</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-info-item">
+                        <i>⏰</i>
+                        <div>
+                            <h4>Business Hours</h4>
+                            <p>Monday - Wednesday: 10:00am - 7:30pm</p>
+                            <p>Thursday - Friday: 9:30am - 7:30pm</p>
+                            <p>Saturday: 9:30am - 7:00pm</p>
+                            <p>Sunday: 9:30am - 5:00pm</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-map">
+                    <!-- Map placeholder -->
+                    <div style="height: 100%; display: flex; align-items: center; justify-content: center; background-color: #f5f5f5;">
+                        <div style="text-align: center;">
+                            <p>Map Location</p>
+                            <p>226 NJ-35, Eatontown, NJ 07724</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>Beyond <span>Salon</span></h3>
+                    <p>Your premier destination for beauty and relaxation in Eatontown, NJ.</p>
+                </div>
+                
+                <div>
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#gallery">Gallery</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Our Services</h4>
+                    <ul>
+                        <li><a href="#services">Nail Care</a></li>
+                        <li><a href="#services">Spa Pedicure</a></li>
+                        <li><a href="#services">Waxing</a></li>
+                        <li><a href="#services">Hair Services</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4>Contact Us</h4>
+                    <ul>
+                        <li>226 NJ-35, Eatontown, NJ 07724</li>
+                        <li>(732) 389-1234</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Beyond Salon and Nails. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile menu toggle
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const nav = document.querySelector('nav');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                nav.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function() {
+                    nav.classList.remove('active');
+                });
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
